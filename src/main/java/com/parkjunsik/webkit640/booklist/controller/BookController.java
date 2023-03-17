@@ -4,7 +4,6 @@ import com.parkjunsik.webkit640.booklist.dto.AddBookDTO;
 import com.parkjunsik.webkit640.booklist.entity.BookEntity;
 import com.parkjunsik.webkit640.booklist.service.BookService;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
