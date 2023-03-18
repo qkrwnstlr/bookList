@@ -9,4 +9,5 @@ public class FindBookDTO {
     private String category;
     private String country;
     private String genre;
+    private int price;
 }
