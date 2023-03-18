@@ -1,10 +1,15 @@
 package com.parkjunsik.webkit640.booklist.service;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.parkjunsik.webkit640.booklist.dto.FindBookDTO;
 import com.parkjunsik.webkit640.booklist.entity.BookEntity;
 import com.parkjunsik.webkit640.booklist.repository.BookRepository;
+import com.parkjunsik.webkit640.booklist.repository.BookSpecification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -37,38 +42,13 @@ public class BookService {
   }
 
   /**
-   * 제목으로 책 조회
+   * 필터에 따라 책 조회
    */
-  public Optional<List<BookEntity>> getBookWithTitle(String title) {
-    return bookRepository.findByTitleLike("%" + title + "%");
-  }
-
-  /**
-   * 작가로 책 조회
-   */
-  public Optional<List<BookEntity>> getBookWithWriter(String writer) {
-    return bookRepository.findByWriter(writer);
-  }
-
-  /**
-   * 카테고리로 책 조회
-   */
-  public Optional<List<BookEntity>> getBookWithCategory(String category) {
-    return bookRepository.findByCategory(category);
-  }
-
-  /**
-   * 장르로 책 조회
-   */
-  public Optional<List<BookEntity>> getBookWithGenre(String genre) {
-    return bookRepository.findByGenre(genre);
-  }
-
-  /**
-   * 국가로 책 조회
-   */
-  public Optional<List<BookEntity>> getBookWithCountry(String country) {
-    return bookRepository.findByCountry(country);
+  public List<BookEntity> getBookWithFilter(FindBookDTO findBookDTO) {
+    ObjectMapper objectMapper = new ObjectMapper();
+    TypeReference<Map<String, Object>> type = new TypeReference<>(){};
+    System.out.println(objectMapper.convertValue(findBookDTO, type));
+    return bookRepository.findAll(BookSpecification.findBook(objectMapper.convertValue(findBookDTO, type)));
   }
 
   /**

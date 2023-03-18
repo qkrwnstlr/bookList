@@ -1,6 +1,7 @@
 package com.parkjunsik.webkit640.booklist.controller;
 
 import com.parkjunsik.webkit640.booklist.dto.AddBookDTO;
+import com.parkjunsik.webkit640.booklist.dto.FindBookDTO;
 import com.parkjunsik.webkit640.booklist.entity.BookEntity;
 import com.parkjunsik.webkit640.booklist.service.BookService;
 import org.springframework.stereotype.Controller;
@@ -16,21 +17,16 @@ public class BookController {
     this.bookService = bookService;
   }
 
+  @GetMapping("book")
+  @ResponseBody
+  public List<BookEntity> getAllBook(@ModelAttribute FindBookDTO findBookDTO) {
+    System.out.println("book");
+    return bookService.getBookWithFilter(findBookDTO);
+  }
+
   @PostMapping("book/add")
   @ResponseBody
   public BookEntity addBook(@RequestBody AddBookDTO addBookDTO) {
     return bookService.addNewBook(addBookDTO.toEntity());
-  }
-
-  @GetMapping("book")
-  @ResponseBody
-  public List<BookEntity> getAllBook() {
-    return bookService.getAllBook();
-  }
-
-  @GetMapping("book/title")
-  @ResponseBody
-  public List<BookEntity> getBookWithTitle(@RequestParam("title") String title) {
-    return bookService.getBookWithTitle(title).get();
   }
 }
