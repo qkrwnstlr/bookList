@@ -13,7 +13,6 @@ public class BookEntity {
   private Long id;
   private String title;
   private String writer;
-  private String category;
   private String country;
   private String genre;
   private int price;

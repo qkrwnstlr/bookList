@@ -17,7 +17,6 @@ public class AddBookDTO {
     BookEntity book = new BookEntity();
     book.setTitle(title);
     book.setWriter(writer);
-    book.setCategory(category);
     book.setCountry(country);
     book.setGenre(genre);
     book.setPrice(price);
