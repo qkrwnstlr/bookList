@@ -1,10 +1,40 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
 </head>
 <body>
-    <p th:text="'Add ' + ${newBook.title}">Add newBook</p>
+
+
+<div class="row">
+    <div class="col-sm-4"><p th:text="'Add ' + ${recommendList.size()}">Add newBook</p></div>
+    <div class="col-sm-4"><p th:text="'Add ' + ${searchList.size()}">Add newBook</p></div>
+</div>
+<table>
+    <thead>
+    <tr>
+        <th>title</th>
+        <th>writer</th>
+        <th>category</th>
+        <th>country</th>
+        <th>genre</th>
+        <th>price</th>
+        <th>description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="recommendBook: ${recommendList}">
+        <td th:text="${recommendBook.title}"></td>
+        <td th:text="${recommendBook.writer}"></td>
+        <td th:text="${recommendBook.category}"></td>
+        <td th:text="${recommendBook.country}"></td>
+        <td th:text="${recommendBook.genre}"></td>
+        <td th:text="${recommendBook.price}"></td>
+        <td th:text="${recommendBook.description}"></td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>
