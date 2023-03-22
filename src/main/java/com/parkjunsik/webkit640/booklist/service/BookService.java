@@ -46,7 +46,8 @@ public class BookService {
    */
   public List<BookEntity> getBookWithFilter(FindBookDTO findBookDTO) {
     ObjectMapper objectMapper = new ObjectMapper();
-    TypeReference<Map<String, Object>> type = new TypeReference<>(){};
+    TypeReference<Map<String, Object>> type = new TypeReference<>() {
+    };
     System.out.println(objectMapper.convertValue(findBookDTO, type));
     return bookRepository.findAll(BookSpecification.findBook(objectMapper.convertValue(findBookDTO, type)));
   }
@@ -57,6 +58,13 @@ public class BookService {
   public BookEntity updateBook(BookEntity book) {
     checkIsBookExist(book);
     return bookRepository.save(book);
+  }
+
+  /**
+   * 책 정보 삭제
+   */
+  public void deleteBook(Long id) {
+    bookRepository.deleteById(id);
   }
 
   /**

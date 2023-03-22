@@ -29,4 +29,10 @@ public class BookController {
   public BookEntity addBook(@RequestBody AddBookDTO addBookDTO) {
     return bookService.addNewBook(addBookDTO.toEntity());
   }
+
+  @PostMapping("book/delete")
+  @ResponseBody
+  public void deleteBook(@RequestParam Long id) {
+    bookService.deleteBook(id);
+  }
 }

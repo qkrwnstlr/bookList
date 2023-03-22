@@ -12,4 +12,5 @@ public interface BookRepository {
   List<BookEntity> findAll();
   List<BookEntity> findAll(@Nullable Specification<BookEntity> spec);
   Optional<BookEntity> findById(Long id);
+  void deleteById(Long id);
 }
