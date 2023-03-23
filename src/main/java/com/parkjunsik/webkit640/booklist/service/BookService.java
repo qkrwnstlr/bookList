@@ -6,6 +6,7 @@ import com.parkjunsik.webkit640.booklist.dto.FindBookDTO;
 import com.parkjunsik.webkit640.booklist.entity.BookEntity;
 import com.parkjunsik.webkit640.booklist.repository.BookRepository;
 import com.parkjunsik.webkit640.booklist.repository.BookSpecification;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,8 +31,8 @@ public class BookService {
   /**
    * 전체 책 조회
    */
-  public List<BookEntity> getAllBook() {
-    return bookRepository.findAll();
+  public List<BookEntity> getAllBook(Pageable pageable) {
+    return bookRepository.findAll(pageable).toList();
   }
 
   /**
